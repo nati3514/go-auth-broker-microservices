@@ -51,18 +51,21 @@ docker compose -f project/docker-compose.yml down -v
 The repository contains three services and a `docker-compose.yml` that brings them up along with a PostgreSQL database for development.
 
 1. Ensure Docker and Docker Compose are installed.
-2. From the repository root, start all services:
+2. From the repository root, you can use the Makefile shortcuts:
 
 ```bash
-docker compose -f project/docker-compose.yml up --build
+make up        # build and start all services via docker-compose
+make down      # stop containers and remove volumes
 ```
+
+Behind the scenes the `up` target runs `docker compose -f project/docker-compose.yml up --build`.
 
 3. The services listen on ports defined in the compose file:
 	- authentication-service: `http://localhost:8080` (example)
 	- broker-service: `http://localhost:8090`
 	- front-end: `http://localhost:3000` (if built)
 
-4. To stop and clean up containers and volumes:
+4. To stop and clean up containers and volumes you can run `make down` or:
 
 ```bash
 docker compose -f project/docker-compose.yml down -v
