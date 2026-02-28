@@ -1,0 +1,41 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary, coverage
+*.test
+coverage.out
+
+# Output of the go coverage tool
+*.coverprofile
+
+# Vendor directory
+vendor/
+
+# Dependency directories
+Godeps/
+
+# Build output
+bin/
+
+# IDE configs
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+
+# Env files
+.env
+
+# Docker
+*.dockerignore
+docker-compose.override.yml
+
+# Local DB data used by docker-compose
+db-data/
+
+# Logs
+*.log
