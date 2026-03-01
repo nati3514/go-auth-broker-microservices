@@ -51,9 +51,10 @@ docker compose -f project/docker-compose.yml down -v
 The repository contains three services and a `docker-compose.yml` that brings them up along with a PostgreSQL database for development.
 
 1. Ensure Docker and Docker Compose are installed.
-2. From the repository root, you can use the Makefile shortcuts:
+2. From the repository root, use the Makefile in the `project` directory. Run:
 
 ```bash
+cd project
 make up        # build and start all services via docker-compose
 make down      # stop containers and remove volumes
 ```
