@@ -4,16 +4,18 @@ Lightweight Go microservices example implementing an Authentication Service and 
 
 ## Overview
 
-This project contains three main components:
+This project contains four main components:
 
 - `authentication-service` — handles user authentication, token generation, and user data.
 - `broker-service` — receives events/messages (JSON) and dispatches them to other services.
+- `logger-service` — centralized logging service that stores and retrieves log entries via MongoDB.
 - `front-end` — minimal web UI for testing flows.
 
 Project layout (top-level):
 
 - `authentication-service/` — auth service source and Dockerfile
 - `broker-service/` — broker service source and Dockerfile
+- `logger-service/` — logging service source and Dockerfile
 - `front-end/` — simple web UI
 - `project/` — `docker-compose.yml`, local orchestration and DB volumes
 
@@ -65,6 +67,7 @@ Behind the scenes the `up` target runs `docker compose -f project/docker-compose
 	- front-end (web UI): `http://localhost:3001`
 	- broker-service API: `http://localhost:3002`
 	- authentication-service API: `http://localhost:3003`
+	- logger-service API: `http://localhost:3004`
 
    The front-end UI includes buttons to trigger broker calls and authentication events, which are sent to the broker service on port 3002.
 
@@ -75,3 +78,18 @@ docker compose -f project/docker-compose.yml down -v
 ```
 
 Refer to the individual service directories for additional build or run instructions if running outside Docker.
+
+## Logger Service API
+
+The logger service provides a simple REST API for centralized logging:
+
+- `POST /log` - Accepts JSON payload with `name` and `data` fields, stores in MongoDB
+- `GET /ping` - Health check endpoint
+
+Example payload:
+```json
+{
+  "name": "authentication",
+  "data": "User login successful for user@example.com"
+}
+```
